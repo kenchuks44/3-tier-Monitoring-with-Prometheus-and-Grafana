@@ -55,6 +55,31 @@ Next, we update the Prometheus and Grafana services to use LoadBalancer to enabl
 
 ![Screenshot (611)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/913ffbb5-30ca-440e-8428-3d8bb113a163)
 
+We then access UI for Prometheus and Grafana (with required credentials)
+
+![Screenshot (612)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/ee6f7797-20cd-4da8-aaab-d0c1e09ff262)
+
+![Screenshot (614)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/54a4db38-c954-422a-bf3a-afe64004bf1d)
+
+![Screenshot (615)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/91b7407b-6920-4615-adcf-f037ad0e121a)
+
+![Screenshot (617)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/4f246a31-ad26-4a6f-84a0-c5ff43093137)
+
+Below are the metrics obtained from the clusters including the nodes also
+
+![Screenshot (616)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/9ce619ae-19b1-40a1-b9d7-60adfb907fb8)
+
+![Screenshot (627)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/c4e7c942-4427-4731-8f7e-b3455359163e)
+
+## Step 2: Deploy a microservices application and create a test anomaly
+
+
+
+
+
+
+
+
 
 
 
