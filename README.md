@@ -72,6 +72,39 @@ Below are the metrics obtained from the clusters including the nodes also
 ![Screenshot (627)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/c4e7c942-4427-4731-8f7e-b3455359163e)
 
 ## Step 2: Deploy a microservices application and create a test anomaly
+We deploy a microservices application using the comman below:
+```
+kubectl apply -f config-microservices.yaml
+```
+
+![Screenshot (620)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/b22a7056-e3f6-463f-b289-f2990839a08a)
+
+![Screenshot (621)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/f7baf7c4-096a-46cb-844e-b5ff7e1ea5e9)
+
+Next, we execute a script that hits the endpoint of the microservices application in a loop using the curl command:
+```
+kubectl run curl-test --image=radial/busyboxplus:curl -i --tty --rm
+vi test.sh
+```
+```
+for i in $(seq 1 10000)
+do
+  curl <frontend-microservice-endpoint> > test.txt
+done
+```
+![Screenshot (624)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/c532468d-3f64-4651-95fb-6491d6d2a06b)
+
+![Screenshot (625)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/7231c6b9-bbed-435b-be47-57707da9900c)
+
+![Screenshot (629)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/0ea18c7c-1bb6-4d2f-a375-b9afe5aadcbd)
+
+The expression `rate(node_cpu_seconds_total{mode="idle"}[2m])` is a Prometheus query that calculates the per-second rate of change for the `node_cpu_seconds_total` metric with the `mode` label set to `"idle". This type of expression is what is used by grafana to display metrics needed.
+
+
+
+
+
+
 
 
 
