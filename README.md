@@ -35,7 +35,7 @@ eksctl create cluster -f eks-cluster.yaml
 ```
 ![Screenshot (600)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/b6935571-13de-4285-b702-b97d4c410c78)
 
-Next, we connect to the cluster, add prometheus chart and install prometheus chart for kubernetes into the cluster using the command below:
+Next, we connect to the cluster, add prometheus chart and install prometheus chart for kubernetes into the cluster using the commands below:
 ```
 aws eks update-kubeconfig --name my-eks-cluster --region us-east-1
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
@@ -71,8 +71,8 @@ Below are the metrics obtained from the clusters including the nodes also
 
 ![Screenshot (627)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/c4e7c942-4427-4731-8f7e-b3455359163e)
 
-## Step 2: Deploy a microservices application and create a test anomaly
-We deploy a microservices application using the comman below:
+## Step 2: Infrastructure & Platform Monitoring
+Here, we deploy a microservices application and create a test anomaly using the commands below:
 ```
 kubectl apply -f config-microservices.yaml
 ```
