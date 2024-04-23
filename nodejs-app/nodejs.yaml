@@ -20,7 +20,6 @@ spec:
       containers:
       - name: nodeapp
         image: kenchuks44/my-repo:nodeapp-3.0
-
         ports:
         - containerPort: 3000
 ---
@@ -54,3 +53,5 @@ spec:
   selector:
     matchLabels:
       app: nodeapp
+
+      
