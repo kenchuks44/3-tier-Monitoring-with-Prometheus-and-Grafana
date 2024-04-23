@@ -109,17 +109,17 @@ Here, we set the alert rules and prometheusrule handles the rules
 
 ![Screenshot (634)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/0de48860-6da3-49d1-9d5c-6f556adca443)
 
-When setting up these rules, we ensure the appropriate labels as noted in the prometheusrule are included in the alert rules. Here, `app=kube-prometheus-stack` and `release=monitoring`
+When setting up these rules, we ensure the appropriate labels as noted in the prometheusrule are included in the alert rules. Here, `app=kube-prometheus-stack` and `release=monitoring` labels are noted.
 
 ![Screenshot (636)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/488968da-92db-4387-8ea4-3334c3649948)
 
-For illustration, we want to be notified when CPU usage is high and when pods cannot start. Hence, we create the alerts `HostHighCPULoad` and `down`
+For illustration, we want to be notified when CPU usage is high and when pods cannot start. Hence, we create the `HostHighCPULoad` and `down` alert rules.
 
 ![Screenshot (723)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/320bf45a-0d7f-4cbf-9b57-62874eb26b05)
 
 ![Screenshot (724)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/8a091ed0-6f85-49cf-9cd3-f02175d915a1)
 
-After the application of the rules, we check prometheus log of config-reloader container to confirm a reload has triggered(which implies the rule has been added) using the command below
+After the application of the rules, we check prometheus log of config-reloader container to confirm a reload has triggered(which implies the rule has been added) using the commands below
 ```
 kubectl logs prometheus-monitoring-kube-prometheus-prometheus-0 -n monitoring -c config-reloader | grep Reload
 kubectl get prometheusrule -n monitoring | grep -E 'main-rules|up-rules'
@@ -219,7 +219,7 @@ kubectl scale deployment redis-cart --replicas=0
 
 ![Screenshot (661 1)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/aa307919-6b87-4510-a0e7-1e27ab2f60a5)
 
-Now lets try and create a dashboard for our redis application. We can make use of ready made dashboards from [Grafana](https://grafana.com/grafana/dashboards/). Here, we will be making use on one of the numerous dashoard for [Redis](https://grafana.com/grafana/dashboards/11835-redis-dashboard-for-prometheus-redis-exporter-helm-stable-redis-ha/)
+Now, lets try and create a dashboard for our redis application. We can make use of ready made dashboards from [Grafana](https://grafana.com/grafana/dashboards/). Here, we will be making use of one of the numerous dashoards for [Redis](https://grafana.com/grafana/dashboards/11835-redis-dashboard-for-prometheus-redis-exporter-helm-stable-redis-ha/)
 
 ![Screenshot (663)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/ac22ffe5-abf8-4a22-b18b-dc57b2d95715)
 
@@ -232,8 +232,9 @@ Now lets try and create a dashboard for our redis application. We can make use o
 ![Screenshot (669)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/17a4f575-0778-41de-80f2-2ae8339f9457)
 
 ## Step 3: Monitoring own application
-Finally, we monitor our own application deployed in the cluster and we are using a nodejs application. There are no exporter available for our own application, so we have to define the metrics. There are prometheus client libraries for different languages in which the application is written it. Developers write the code using the prometheus client library. The screenshot shows metrics to monitor in the application.
+Finally, we monitor our own application deployed in the cluster and we are using a nodejs application. There are no exporters available for our own application, so we have to define the metrics. There are prometheus client libraries for different languages in which the application is written in. Developers write the code using the prometheus client library. The screenshot shows metrics to monitor in the application.
 
+To-do
 - Expose metrics for our Nodejs app using Nodejs client library
 - Deploy Nodejs app in the cluster
 - Configure Prometheus to scrape new target(ServiceMonitor)
