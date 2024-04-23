@@ -35,7 +35,7 @@ eksctl create cluster -f eks-cluster.yaml
 ```
 ![Screenshot (600)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/b6935571-13de-4285-b702-b97d4c410c78)
 
-Next, we connect to the cluster, add prometheus chart and install prometheus chart for kubernetes into the cluster using the commands below:
+Next, we connect to the cluster, add Prometheus chart and install Prometheus chart for Kubernetes into the cluster using the commands below:
 ```
 aws eks update-kubeconfig --name my-eks-cluster --region us-east-1
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
@@ -133,7 +133,7 @@ From Prometheus UI, we see the alerts have been updated
 
 ![Screenshot (641)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/3701910c-5dae-4a23-bbaa-240df9adfd71)
 
-Next, we run cpustress container to generate CPU load and see if the alert will be triggered with the command below:
+Next, we run cpustress container to generate CPU load and see how the alert will be triggered with the command below:
 ```
 kubectl run cpu-test --image=containerstack/cpustress -- --cpu 4 --timeout 60s --metrics-brief
 ```
@@ -219,7 +219,7 @@ kubectl scale deployment redis-cart --replicas=0
 
 ![Screenshot (661 1)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/aa307919-6b87-4510-a0e7-1e27ab2f60a5)
 
-Now, lets try and create a dashboard for our redis application. We can make use of ready made dashboards from [Grafana](https://grafana.com/grafana/dashboards/). Here, we will be making use of one of the numerous dashoards for [Redis](https://grafana.com/grafana/dashboards/11835-redis-dashboard-for-prometheus-redis-exporter-helm-stable-redis-ha/)
+Now, lets try and create a dashboard for our redis application. We can make use of ready made dashboards from [Grafana](https://grafana.com/grafana/dashboards/). Here, we will be making use of one of the numerous dashboards for [Redis](https://grafana.com/grafana/dashboards/11835-redis-dashboard-for-prometheus-redis-exporter-helm-stable-redis-ha/)
 
 ![Screenshot (663)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/ac22ffe5-abf8-4a22-b18b-dc57b2d95715)
 
@@ -258,11 +258,13 @@ The targets have been included and we can query metrics for the application
 
 ![Screenshot (707)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/c3e3ed81-9e93-429b-8ea1-f33a8eb9ca2f)
 
-We define the metrics, `rate(http_request_operations_total{container="nodeapp"}[5m])` and `rate(http_request_duration_seconds_sum{container="nodeapp"}[2m])`  we want to monitor and setup a Grafana dashboard to display the metrics.
+We define the metrics, `rate(http_request_operations_total{container="nodeapp"}[5m])` and `rate(http_request_duration_seconds_sum{container="nodeapp"}[2m])` we want to monitor and setup a Grafana dashboard to display the metrics.
 
 ![Screenshot (709)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/32186cee-17fc-42c8-b193-7607e467239b)
 
 ![Screenshot (711)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/99707da6-5509-4a70-8888-4621a9391d63)
+
+We then create our own Grafana dashboard to visualized the metrics
 
 ![Screenshot (712)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/48e1c80d-7892-40e8-afc5-2d4cc34e271c)
 
