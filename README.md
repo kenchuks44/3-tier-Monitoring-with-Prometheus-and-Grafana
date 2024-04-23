@@ -215,7 +215,7 @@ Next, we scale the pod replica to zero to observe the alert triggered
 kubectl scale deployment redis-cart --replicas=0
 ```
 
-![Screenshot (662)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/a ssets/88329191/c568afc2-e3ea-4524-b67a-4c6a868e2b19)
+![Screenshot (662)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/c568afc2-e3ea-4524-b67a-4c6a868e2b19)
 
 ![Screenshot (661 1)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/aa307919-6b87-4510-a0e7-1e27ab2f60a5)
 
