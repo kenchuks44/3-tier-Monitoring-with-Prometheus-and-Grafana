@@ -9,8 +9,8 @@ Pre-requisites
 - Installation of [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html), [Kubectl](https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html), [Helm](https://helm.sh/docs/intro/install/) and [EKSCTL](https://github.com/eksctl-io/eksctl/releases)
 - Configuration of AWS authentication using access keys
 
-## Step 1: Setup EKS cluster using eksctl 
-With the definition file below, we create the cluster
+## Step 1: Kubernetes Level Monitoring 
+With the definition file below, we create the cluster using eksctl
 ```
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
@@ -71,8 +71,7 @@ Below are the metrics obtained from the clusters including the nodes also
 
 ![Screenshot (627)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/c4e7c942-4427-4731-8f7e-b3455359163e)
 
-## Step 2: Infrastructure & Platform Monitoring
-Here, we deploy a microservices application and create a test anomaly using the commands below:
+Next, we deploy a microservices application and create a test anomaly using the commands below:
 ```
 kubectl apply -f config-microservices.yaml
 ```
@@ -143,7 +142,7 @@ kubectl run cpu-test --image=containerstack/cpustress -- --cpu 4 --timeout 60s -
 
 ![Screenshot (645 1)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/8410c024-7a16-4e13-bab1-de302943834e)
 
-## Step 3: Monitoring 3rd party application - Redis
+## Step 2: Monitoring 3rd party application - Redis
 After completing the Kubernetes-level monitoring, we next monitor Redis, a 3rd party application within our microservices. To achieve this, we use an exporter. The exporter gets metrics data from the service, translates these service specific metrics to Prometheus understandable metrics and exposes these translated metrics under `/metrics` endpoint. To ensure Prometheus is aware of this new exporter, we will deploy a ServiceMonitor, a custom Kubernetes resource designed for this purpose.
 
 Deploy redis exporter, ensure you set ServiceMonitor to true and specify the redis service name in the helms value (in the redis-values.yaml)
@@ -232,7 +231,7 @@ Now lets try and create a dashboard for our redis application. We can make use o
 
 ![Screenshot (669)](https://github.com/kenchuks44/3-tier-Monitoring-with-Prometheus-and-Grafana/assets/88329191/17a4f575-0778-41de-80f2-2ae8339f9457)
 
-## Step 4: Monitoring own application
+## Step 3: Monitoring own application
 Finally, we monitor our own application deployed in the cluster and we are using a nodejs application. There are no exporter available for our own application, so we have to define the metrics. There are prometheus client libraries for different languages in which the application is written it. Developers write the code using the prometheus client library. The screenshot shows metrics to monitor in the application.
 
 - Expose metrics for our Nodejs app using Nodejs client library
