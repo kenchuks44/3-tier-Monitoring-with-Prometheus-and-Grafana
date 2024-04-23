@@ -10,7 +10,7 @@ Pre-requisites
 - Configuration of AWS authentication using access keys
 
 ## Step 1: Kubernetes Level Monitoring 
-With the definition file below, we create the cluster using eksctl
+With the configuration file below, we first create the cluster using eksctl
 ```
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
